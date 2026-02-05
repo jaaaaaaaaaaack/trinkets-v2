@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+/* OT Brut font */
+@font-face {
+    font-family: 'OT Brut';
+    src: url('fonts/OTBrut-Italic.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'OT Brut';
+    src: url('fonts/OTBrut-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* NORMALIZE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* NORMALIZE */
+
+body {
+    background: #121212;
+    color: #F1F1F1;
+    overflow: hidden;
+    position: relative;
+}
+
+.mwg_effect023 {
+    height: 100vh;
+}
+
+.mwg_effect023 .container {
+    position: absolute;
+    width: 300vw;
+    height: 300vw;
+    left: -100vw;
+    /* will-change applied dynamically via JS during animations to reduce GPU memory */
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.mwg_effect023 .inner-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* To position the child image */
+    justify-content: center;
+    /* The child image will be centered horizontally */
+    /* will-change applied dynamically via JS during animations to reduce GPU memory */
+    backface-visibility: hidden;
+    pointer-events: none; /* Allow clicks to pass through the large wrapper */
+}
+
+.mwg_effect023 .media-wrapper {
+    width: 20vw;
+    height: 26vw;
+    margin: 50vh 0 0;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Custom link cursor for central card */
+.mwg_effect023 .media-wrapper.central {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white'%3E%3Cpolygon points='16 10 17 10 17 17 16 17 16 18 15 18 15 19 14 19 14 20 13 20 13 21 12 21 12 22 11 22 11 23 5 23 5 22 4 22 4 21 3 21 3 20 2 20 2 19 1 19 1 14 2 14 2 13 3 13 3 12 4 12 4 11 5 11 5 15 4 15 4 18 5 18 5 19 6 19 6 20 9 20 9 19 10 19 10 18 11 18 11 17 12 17 12 16 13 16 13 15 14 15 14 12 13 12 13 11 12 11 12 10 13 10 13 9 14 9 14 8 15 8 15 9 16 9 16 10'/%3E%3Cpolygon points='23 5 23 10 22 10 22 11 21 11 21 12 20 12 20 13 19 13 19 9 20 9 20 6 19 6 19 5 18 5 18 4 15 4 15 5 14 5 14 6 13 6 13 7 12 7 12 8 11 8 11 9 10 9 10 12 11 12 11 13 12 13 12 14 11 14 11 15 10 15 10 16 9 16 9 15 8 15 8 14 7 14 7 7 8 7 8 6 9 6 9 5 10 5 10 4 11 4 11 3 12 3 12 2 13 2 13 1 19 1 19 2 20 2 20 3 21 3 21 4 22 4 22 5 23 5'/%3E%3C/svg%3E") 12 12, pointer;
+}
+
+.mwg_effect023 .media {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: 50% 100%;
+    /* Aligning the media to its bottom */
+}
+
+/* Video elements inherit img.media styling */
+.mwg_effect023 video.media {
+    display: block;
+}
+
+.mwg_effect023 .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.mwg_effect023 .header .logo {
+    height: clamp(28px, 3.5vw, 50px);
+    width: auto;
+}
+
+.mwg_effect023 .position-indicator {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 10;
+}
+
+.mwg_effect023 .position-icon {
+    width: 40px;
+    height: auto;
+}
+
+/* Detail View Overlay */
+.mwg_effect023 .detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(18, 18, 18, 0.85);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.mwg_effect023 .detail-overlay.active {
+    pointer-events: auto;
+}
+
+/* During detail view, container needs z-index to create stacking context above overlay */
+.mwg_effect023 .container.detail-view-active {
+    z-index: 60;
+    pointer-events: none; /* Prevent container from blocking overlay clicks */
+}
+
+/* Active inner-media is elevated within container's stacking context */
+/* Note: pointer-events stays none (inherited) - only the media child has pointer-events */
+.mwg_effect023 .inner-media.detail-active {
+    z-index: 100;
+}
+
+/* Detail View - Active Media - only this small element gets pointer-events */
+.mwg_effect023 .media.detail-active {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Detail Clone - positioned fixed on body, outside transform stack */
+.detail-clone {
+    backface-visibility: hidden;
+    pointer-events: none;
+}
+
+/* Dimmed state for non-active items */
+.mwg_effect023 .inner-media.dimmed {
+    opacity: 0.15;
+}
+
+@media (max-width: 900px) {
+    .mwg_effect023 .header {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.3;
+    }
+
+    .mwg_effect023 .container {
+        width: 800vw;
+        height: 800vw;
+        left: -350vw;
+    }
+
+    .mwg_effect023 .media-wrapper {
+        width: 40vw;
+        height: 52vw;
+    }
+}

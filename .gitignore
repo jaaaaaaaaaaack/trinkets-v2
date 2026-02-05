@@ -1,0 +1,7 @@
+# Internal docs
+PLAN.md
+REPORT*.md
+ANIMATION_OPTIMIZATION_REPORT.md
+
+# Agent artifacts
+.agent/
