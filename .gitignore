@@ -2,6 +2,14 @@
 PLAN.md
 REPORT*.md
 ANIMATION_OPTIMIZATION_REPORT.md
+LEARNINGS.md
+DETAIL_VIEW_RESEARCH.md
 
 # Agent artifacts
 .agent/
+
+# OS files
+.DS_Store
+
+# Secrets
+config.js
