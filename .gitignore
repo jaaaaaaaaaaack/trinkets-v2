@@ -11,5 +11,3 @@ DETAIL_VIEW_RESEARCH.md
 # OS files
 .DS_Store
 
-# Secrets
-config.js

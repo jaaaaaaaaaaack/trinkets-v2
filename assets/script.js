@@ -40,8 +40,7 @@ let currentCentralWrapper = null;
 // Fetch Are.na channel contents
 async function fetchContents() {
     const response = await fetch(
-        `${API_BASE}/channels/${CONFIG.ARENA_CHANNEL_SLUG}/contents`,
-        { headers: { 'Authorization': `Bearer ${CONFIG.ARENA_API_TOKEN}` } }
+        `${API_BASE}/channels/${CONFIG.ARENA_CHANNEL_SLUG}/contents`
     );
     if (!response.ok) throw new Error('Failed to fetch contents');
     return response.json();

@@ -6,9 +6,7 @@ Built with vanilla HTML/CSS/JS and [GSAP](https://gsap.com/) (Draggable, Inertia
 
 ## Setup
 
-1. Copy `config.example.js` to `config.js`
-2. Add your [Are.na API token](https://dev.are.na/documentation)
-3. Open `index.html` in your browser or deploy to a static host
+Open `index.html` in your browser or deploy to a static host. Edit `config.js` to point at a different Are.na channel.
 
 ## License
 
